@@ -126,12 +126,12 @@ async function query() {
 
 ## 完整选项
 
-| 名称 | 默认值 | 说明 |
+| 名称 | 说明 | 默认值 |
 | ---- | ------- | ----------- |
-| URL | /graphql | 指定 graphql 服务 URL |
-| request | 内建 | 自定义请求函数 |
-| extensions | .gql/.graphql | 扩展名，省备扩展名时将按配置查找 |
-| string | false | 指定模式，当为 true 时导入的为字符串，而不是可执行的函数 |
+| URL |指定 graphql 服务 URL | /graphql |
+| request | 自定义请求函数 | 使用内建模块 |
+| extensions | 默认扩展名，在导入时省略扩展名时将按配置依次查找 | .gql/.graphql |
+| string | 指定导入模式，当为 true 时导入为字符串，而不是可执行的函数 | false |
 
 
 注意，`gq-loader` 的 `extensions` 无论配置何值，在 `js` 中 `import` 时都不能省略扩展名，此选项仅作用于 `.gql` 文件 `import` 其它 `.gql` 文件
