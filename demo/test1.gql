@@ -1,0 +1,7 @@
+# import './test2.gql'
+
+query test {
+  user {
+    name   
+  }
+}

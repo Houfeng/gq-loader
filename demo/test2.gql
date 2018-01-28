@@ -1,0 +1,9 @@
+# include './test3'
+
+fragment test2 on XXX {
+  name
+  appearsIn
+  friends {
+    name
+  }
+}

@@ -1,0 +1,25 @@
+init:
+  - name: pkginfo
+
+dev:
+  - name: webpack
+    entry: ./demo/*.js
+    compress: false
+    template: ./demo/assets/*.html
+    watch: true
+  - name: server
+    port: 7005
+
+build:
+  - name: webpack
+    entry: ./demo/*.js
+
+test:
+  - name: lint
+  - name: unit
+
+publish:
+  - name: shell
+    script:
+      - dn test
+      - npm pu
