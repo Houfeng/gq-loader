@@ -1,6 +1,9 @@
 # gq-loader
 
-gq-loader 是一个 `webpack` 插件，它使你能在 `js` 文件中通过 `import` 或 `require` 导入 `.gql` 和 `.graphql` 文件. 并且它还支持通过 `#import` 语法导入其它 `.gql` 文件，比如 fragments。
+GraphQL 既是一种用于 API 的查询语言也是一个满足你数据查询的运行时。 GraphQL 对你的 API 中的数据提供了一套易于理解的完整描述，使得客户端能够准确地获得它需要的数据，而且没有任何冗余。
+
+gq-loader 是一个 `webpack` 插件，它能让前端开发人员在使用 GraphQL 时更加方便。
+它使你能在 `js` 文件中通过 `import` 或 `require` 导入 `.gql` 和 `.graphql` 文件. 并且它还支持通过 `#import` 语法导入其它 `.gql` 文件，比如 fragments。
 
 ## 安装
 
