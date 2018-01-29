@@ -1,6 +1,6 @@
 {
   "name": "gq-loader",
-  "version": "0.1.3",
+  "version": "0.1.5",
   "description": "",
   "main": "./lib/index.js",
   "scripts": {

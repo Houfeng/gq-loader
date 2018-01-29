@@ -1,4 +1,4 @@
-# include './test3'
+# include './test3'  
 
 fragment test2 on XXX {
   name
@@ -6,4 +6,4 @@ fragment test2 on XXX {
   friends {
     name
   }
-}
+} 

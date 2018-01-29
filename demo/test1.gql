@@ -1,6 +1,6 @@
-# import './test2.gql'
+# import './test2.gql'  
 
-query test {
+query MyTest {
   user {
     name   
   }
