@@ -24,7 +24,7 @@ yarn add gq-loader
 
 ## 基本使用
 
-如同其它类的的 loader 一样，首先，我们在 `webpack.config.js` 中添加 `gq-loader` 的配置
+如同其它 loader 一样，首先，我们在 `webpack.config.js` 中添加 `gq-loader` 的配置
 
 ```js
 {
@@ -78,7 +78,7 @@ function App() {
 ReactDOM.render(<App />, document.getElementById('root'));
 ```
 
-在调用 `getUser` 时，我们可以通过参数，向 `GraphQL` 传递变量，这些变量就是我们的查询参数。
+在调用 `getUser` 时，我们可以通过函数参数向 `GraphQL` 传递变量，这些变量就是我们的查询参数。
 
 ## 自定义请求
 
