@@ -58,7 +58,7 @@ mutation update($form: User) {
   }
 }
 ```
-可以看到，我们通过 `#import` 引用了另外一个 `.gql` 文件 `fragment.gql`，在这个文件中我们描术了要返回的 user 的字段信息，这样我们就能在不同的地方「重用」它了，我们也创建一下这个文件
+可以看到，我们通过 `#import` 引用了另外一个 `.gql` 文件 `fragment.gql`，在这个文件中我们描述了要返回的 user 的字段信息，这样我们就能在不同的地方「重用」它了，我们也创建一下这个文件
 
 ```gql
 fragment userFields on User {
@@ -75,12 +75,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 async function query() {
-  const user = await user.get({ name: 'bob' });
-  console.log('user', user);
+  const userdata = await user.get({ name: 'bob' });
+  console.log('user', userdata);
 }
 
 async function update() {
-  const user = await user.update({ form: { age: 25 } })
+  const userdata = await user.update({ form: { age: 25 } })
+  console.log('after user', userdata);
 }
 
 function App() {
