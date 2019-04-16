@@ -41,7 +41,7 @@ yarn add gq-loader
 }
 ```
 
-然后，我们就可以在 `js` 文件中通过 `import` 来导入 `.gql` 文件使用它了，我们来一个简单的示例，假设已经有一个可以工作的 `Graphql Server`，那么，我们先创建一个可以用户的 `user.gql`
+然后，我们就可以在 `js` 文件中通过 `import` 来导入 `.gql` 文件使用它了，我们来一个简单的示例，假设已经有一个可以工作的 `Graphql Server`，那么，我们先创建一个用户的 `user.gql`
 
 ```graphql
 #import './fragment.gql' 
