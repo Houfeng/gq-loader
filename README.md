@@ -1,3 +1,5 @@
+# graphql-auto-loader
+
 # The best GraphQL Loader for Webpack
 
 GraphQL 既是一种用于 API 的查询语言也是一个满足你数据查询的运行时。 GraphQL 对你的 API 中的数据提供了一套易于理解的完整描述，使得客户端能够准确地获得它需要的数据，而且没有任何冗余。
@@ -39,13 +41,19 @@ yarn add gq-loader
 }
 ```
 
-然后，我们就可以在 `js` 文件中通过 `import` 来导入 `.gql` 文件使用它了，我们来一个简单的示例，假设已经有一个可以工作的 `Graphql Server`，那么，我们先创建一个可以查询用户的 `getUser.gql`
+然后，我们就可以在 `js` 文件中通过 `import` 来导入 `.gql` 文件使用它了，我们来一个简单的示例，假设已经有一个可以工作的 `Graphql Server`，那么，我们先创建一个可以用户的 `user.gql`
 
-```gql
+```graphql
 #import './fragment.gql' 
 
-query MyQuery($name: String) {
+query get($name: String) {
   getUser(name: $name)
+    ...userFields
+  }
+}
+
+mutation update($form: User) {
+  updateUser(input: $form) {
     ...userFields
   }
 }
@@ -59,26 +67,35 @@ fragment userFields on User {
 }
 ```
 
-好了，我们可以在 `js` 文件中直接导入 `getUser.gql`，并且使用它查询用户了，从未如此简便，我们来看看
+好了，我们可以在 `js` 文件中直接导入 `user.gql`，并且使用它查询用户了，从未如此简便，我们来看看
 
 ```js
-import getUser from './getUser.gql';
+import user from './user.gql';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
 async function query() {
-  const user = await getUser({ name: 'bob' });
+  const user = await user.get({ name: 'bob' });
   console.log('user', user);
 }
 
+async function update() {
+  const user = await user.update({ form: { age: 25 } })
+}
+
 function App() {
-  return <button onClick={query}>click</button>;
+  return (
+    <div>
+      <button onClick={query}>query</button>;
+      <button onClick={update}>update</button>;
+    </div>
+  )
 }
 
 ReactDOM.render(<App />, document.getElementById('root'));
 ```
 
-在调用 `getUser` 时，我们可以通过函数参数向 `GraphQL` 传递变量，这些变量就是我们的查询参数。
+在调用 `user.get` 时，我们可以通过函数参数向 `GraphQL` 传递变量，这些变量就是我们的查询参数。
 
 ## 自定义请求
 
@@ -93,7 +110,7 @@ ReactDOM.render(<App />, document.getElementById('root'));
     options: {
       url: 'Graphql Server URL',
       //指定自动请求模块路径
-      request: require.resolve('your_request_module_path');
+      request: path.resolve('your_request_module_path');
     }
   }
 }
@@ -115,11 +132,11 @@ module.exports = function(url, data, options){
 其中，`options` 是导入 `.gql` 文件后「函数的第二个参数」，比如，可以这样传递 `options` 参数
 
 ```js
-import getUser from './getUser.gql';
+import user from './user.gql';
 
 async function query() {
   const options = {...};
-  const user = await getUser({ name: 'bob' }, options);
+  const user = await user.get({ name: 'bob' }, options);
   console.log('user', user);
 }
 ```
@@ -131,7 +148,7 @@ async function query() {
 | URL |指定 graphql 服务 URL | /graphql |
 | request | 自定义请求函数 | 使用内建模块 |
 | extensions | 默认扩展名，在导入时省略扩展名时将按配置依次查找 | .gql/.graphql |
-| string | 指定导入模式，当为 true 时导入为字符串，而不是可执行的函数 | false |
+| string | 指定导入模式，当为 true 时导入为字符串，而不是可执行的函数，已自动修复 fragment 重复和依赖问题 | false |
 
 
 注意，`gq-loader` 的 `extensions` 无论配置何值，在 `js` 中 `import` 时都不能省略扩展名，此选项仅作用于 `.gql` 文件 `import` 其它 `.gql` 文件
