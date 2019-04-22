@@ -9,7 +9,9 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.17.1"
+    "axios": "^0.17.1",
+    "graphql": "^14.2.1",
+    "graphql-tag": "^2.10.1"
   },
   "devDependencies": {
     "react": "^16.2.0",

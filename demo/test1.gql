@@ -1,7 +1,13 @@
 # import './test2.gql'  
 
-query MyTest {
-  user {
-    name   
+query get($name: String) {
+  getUser(name: $name) {
+    name
+  }
+}
+
+mutation update($form: User) {
+  updateUser(input: $form) {
+    ...test2
   }
 }
